@@ -45,6 +45,7 @@ class Localized {
 // 参考:
 // https://flutter.dev/docs/development/accessibility-and-localization/internationalization
 // https://github.com/billylev/flutter_localizations
+
 class AppLocalizationsDelegate extends LocalizationsDelegate<Localized> {
   const AppLocalizationsDelegate();
 
@@ -58,3 +59,16 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<Localized> {
   @override
   bool shouldReload(AppLocalizationsDelegate old) => false;
 }
+
+// MEMO: 注意書きとしてこれだけだとiOS側ではLocalizationの設定が有効にならない
+// → project/ios/Runner/Info.plistを開いて下記の部分を追記してください。
+// 参考:
+// https://qiita.com/sekitaka_1214/items/99a128e2ee7463849232
+
+/*
+ * <key>CFBundleLocalizations</key>
+ * <array>
+ *     <string>English</string>
+ *     <string>ja</string>
+ * </array>
+ */
