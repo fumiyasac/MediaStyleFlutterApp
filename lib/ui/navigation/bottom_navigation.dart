@@ -17,21 +17,24 @@ class _BottomNavigationState extends State<BottomNavigation> {
   // MEMO: 選択したインデックス値
   int _selectedIndex = 0;
 
-  // MEMO: 選択したインデックス値に応じて表示する画面の内容
-  List<Widget> _selectedScreen = [
-    HomeScreen(),
-    GalleriesScreen(),
-    ProfileScreen()
-  ];
-
   // MEMO: 選択したインデックス値に応じて表示するタイトルの内容
   String _getSelectedTitle(int index, BuildContext context) {
-    List<String> _selectedTitle = [
+    List<String> titleList = [
       Localized.of(context).homeScreenTitle,
       Localized.of(context).galleriesScreenTitle,
       Localized.of(context).profileScreenTitle
     ];
-    return _selectedTitle.elementAt(index);
+    return titleList.elementAt(index);
+  }
+
+  // MEMO: 選択したインデックス値に応じて表示する画面の内容
+  Widget _getSelectedScreen(int index, BuildContext context) {
+    List<Widget> screenList = [
+      HomeScreen(),
+      GalleriesScreen(),
+      ProfileScreen()
+    ];
+    return screenList.elementAt(index);
   }
 
   // MEMO: bottomNavigationBarに配置した要素を押下した際の処理
@@ -51,7 +54,7 @@ class _BottomNavigationState extends State<BottomNavigation> {
             _getSelectedTitle(_selectedIndex, context)
         ),
       ),
-      body: _selectedScreen.elementAt(_selectedIndex),
+      body: _getSelectedScreen(_selectedIndex, context),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
