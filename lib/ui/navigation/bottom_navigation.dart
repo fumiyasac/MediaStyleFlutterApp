@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:media_style_app/common/support/localization/localized.dart';
 import 'package:media_style_app/ui/screen/home_screen.dart';
 import 'package:media_style_app/ui/screen/galleries_screen.dart';
 import 'package:media_style_app/ui/screen/profile_screen.dart';
@@ -16,19 +17,22 @@ class _BottomNavigationState extends State<BottomNavigation> {
   // MEMO: 選択したインデックス値
   int _selectedIndex = 0;
 
-  // MEMO: 選択したインデックス値に応じて表示するタイトルの内容
-  List<Text> _selectedTitle = [
-    Text('Home'),
-    Text('Galleries'),
-    Text('Profile')
-  ];
-
   // MEMO: 選択したインデックス値に応じて表示する画面の内容
   List<Widget> _selectedScreen = [
     HomeScreen(),
     GalleriesScreen(),
     ProfileScreen()
   ];
+
+  // MEMO: 選択したインデックス値に応じて表示するタイトルの内容
+  String _getSelectedTitle(int index, BuildContext context) {
+    List<String> _selectedTitle = [
+      Localized.of(context).homeScreenTitle,
+      Localized.of(context).galleriesScreenTitle,
+      Localized.of(context).profileScreenTitle
+    ];
+    return _selectedTitle.elementAt(index);
+  }
 
   // MEMO: bottomNavigationBarに配置した要素を押下した際の処理
   void _onItemTap(int index) {
@@ -40,24 +44,33 @@ class _BottomNavigationState extends State<BottomNavigation> {
   // MEMO: Widget要素構築
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
-        title: _selectedTitle.elementAt(_selectedIndex),
+        title: Text(
+            _getSelectedTitle(_selectedIndex, context)
+        ),
       ),
       body: _selectedScreen.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            title: Text('Home'),
+            title: Text(
+                _getSelectedTitle(0, context)
+            ),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.photo_album),
-            title: Text('Galleries')
+            title: Text(
+                _getSelectedTitle(1, context)
+            )
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            title: Text('Profile')
+            title: Text(
+                _getSelectedTitle(2, context)
+            )
           )
         ],
         currentIndex: _selectedIndex,
