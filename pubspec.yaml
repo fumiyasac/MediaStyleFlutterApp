@@ -4,13 +4,36 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
+
+  # 英訳・日本語訳を適用するために利用するパッケージ
   flutter_localizations:
     sdk: flutter
+  # アーキテクチャで利用するパッケージ
+  hooks_riverpod: ^1.0.0
+  flutter_hooks: ^0.18.1
+  # APIリクエストで利用するパッケージ
+  dio: ^4.0.1
+  # URL取得画像キャッシュで利用するパッケージ
+  cached_network_image: ^3.1.0+1
+  # 補助的に利用するパッケージ
+  tuple: ^2.0.0
+  enum_to_string: ^2.0.1
+  equatable: ^2.0.3
+  dartz: ^0.10.0
+  # データストアで利用するパッケージ
+  shared_preferences: ^2.0.8
+  hive: ^2.0.4
+  hive_flutter: ^1.1.0
+  # UI実装において利用するパッケージ
+  reorderables: ^0.4.1
+  flutter_slidable: ^1.1.0
+  # UnitTestで利用するパッケージ
+  given_when_then: ^0.2.0
 
   cupertino_icons: ^1.0.2
 
